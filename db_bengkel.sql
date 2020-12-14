@@ -18,24 +18,6 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for services
--- ----------------------------
-DROP TABLE IF EXISTS `services`;
-CREATE TABLE `services`  (
-  `id` int(10) NOT NULL,
-  `vehicle_id` int(10) NOT NULL,
-  `technician_id` int(10) NOT NULL,
-  `date` datetime(0) NOT NULL,
-  `problem` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
-  `action` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `vehicle_id`(`vehicle_id`) USING BTREE,
-  INDEX `technician_id`(`technician_id`) USING BTREE,
-  CONSTRAINT `services_ibfk_1` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `services_ibfk_2` FOREIGN KEY (`technician_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
 -- Table structure for users
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
@@ -63,5 +45,25 @@ CREATE TABLE `vehicles`  (
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+
+-- ----------------------------
+-- Table structure for services
+-- ----------------------------
+DROP TABLE IF EXISTS `services`;
+CREATE TABLE `services`  (
+  `id` int(10) NOT NULL,
+  `vehicle_id` int(10) NOT NULL,
+  `technician_id` int(10) NOT NULL,
+  `date` datetime(0) NOT NULL,
+  `problem` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `action` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `vehicle_id`(`vehicle_id`) USING BTREE,
+  INDEX `technician_id`(`technician_id`) USING BTREE,
+  CONSTRAINT `services_ibfk_1` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `services_ibfk_2` FOREIGN KEY (`technician_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
 
 SET FOREIGN_KEY_CHECKS = 1;
