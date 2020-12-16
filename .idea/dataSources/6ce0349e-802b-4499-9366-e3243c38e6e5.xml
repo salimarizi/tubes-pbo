@@ -1105,133 +1105,208 @@
       <ObjectGrants>ALL PRIVILEGES!
 </ObjectGrants>
     </user>
-    <table id="352" parent="7" name="services"/>
-    <table id="353" parent="7" name="users"/>
-    <table id="354" parent="7" name="vehicles"/>
-    <column id="355" parent="352" name="id">
+    <table id="352" parent="7" name="service_sparepart_relations"/>
+    <table id="353" parent="7" name="services"/>
+    <table id="354" parent="7" name="spareparts"/>
+    <table id="355" parent="7" name="users"/>
+    <table id="356" parent="7" name="vehicles"/>
+    <column id="357" parent="352" name="id">
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="356" parent="352" name="vehicle_id">
+    <column id="358" parent="352" name="service_id">
       <Position>2</Position>
       <DataType>int(10)|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
-    <column id="357" parent="352" name="technician_id">
+    <column id="359" parent="352" name="sparepart_id">
       <Position>3</Position>
       <DataType>int(10)|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
-    <column id="358" parent="352" name="date">
-      <Position>4</Position>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="359" parent="352" name="problem">
-      <Position>5</Position>
-      <DataType>text|0s</DataType>
-    </column>
-    <column id="360" parent="352" name="action">
-      <Position>6</Position>
-      <DataType>text|0s</DataType>
-    </column>
-    <index id="361" parent="352" name="vehicle_id">
-      <ColNames>vehicle_id</ColNames>
+    <index id="360" parent="352" name="service_id">
+      <ColNames>service_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="362" parent="352" name="technician_id">
-      <ColNames>technician_id</ColNames>
+    <index id="361" parent="352" name="sparepart_id">
+      <ColNames>sparepart_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="363" parent="352" name="PRIMARY">
+    <key id="362" parent="352" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="364" parent="352" name="services_ibfk_1">
+    <foreign-key id="363" parent="352" name="service_sparepart_relations_ibfk_1">
+      <ColNames>service_id</ColNames>
+      <RefTableName>services</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="364" parent="352" name="service_sparepart_relations_ibfk_2">
+      <ColNames>sparepart_id</ColNames>
+      <RefTableName>spareparts</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="365" parent="353" name="id">
+      <Position>1</Position>
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="366" parent="353" name="vehicle_id">
+      <Position>2</Position>
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="367" parent="353" name="technician_id">
+      <Position>3</Position>
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="368" parent="353" name="date">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="369" parent="353" name="problem">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="370" parent="353" name="action">
+      <Position>6</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <index id="371" parent="353" name="vehicle_id">
+      <ColNames>vehicle_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="372" parent="353" name="technician_id">
+      <ColNames>technician_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="373" parent="353" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="374" parent="353" name="services_ibfk_1">
       <ColNames>vehicle_id</ColNames>
       <RefTableName>vehicles</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="365" parent="352" name="services_ibfk_2">
+    <foreign-key id="375" parent="353" name="services_ibfk_2">
       <ColNames>technician_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="366" parent="353" name="id">
+    <column id="376" parent="354" name="id">
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="367" parent="353" name="name">
+    <column id="377" parent="354" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="378" parent="354" name="quantity">
+      <Position>3</Position>
+      <DataType>int(10)|0s</DataType>
+    </column>
+    <column id="379" parent="354" name="price">
+      <Position>4</Position>
+      <DataType>decimal(10,2 digit)|0s</DataType>
+    </column>
+    <key id="380" parent="354" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="381" parent="355" name="id">
+      <Position>1</Position>
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="382" parent="355" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="368" parent="353" name="username">
+    <column id="383" parent="355" name="username">
       <Position>3</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="369" parent="353" name="password">
+    <column id="384" parent="355" name="password">
       <Position>4</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="370" parent="353" name="phone">
+    <column id="385" parent="355" name="phone">
       <Position>5</Position>
       <DataType>varchar(15)|0s</DataType>
     </column>
-    <column id="371" parent="353" name="address">
+    <column id="386" parent="355" name="address">
       <Position>6</Position>
       <DataType>text|0s</DataType>
     </column>
-    <key id="372" parent="353" name="PRIMARY">
+    <column id="387" parent="355" name="role">
+      <Position>7</Position>
+      <DataType>enum(&apos;admin&apos;, &apos;technician&apos;, &apos;member&apos;)|0e</DataType>
+      <DefaultExpression>&apos;member&apos;</DefaultExpression>
+    </column>
+    <key id="388" parent="355" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="373" parent="354" name="id">
+    <column id="389" parent="356" name="id">
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="374" parent="354" name="user_id">
+    <column id="390" parent="356" name="user_id">
       <Position>2</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="375" parent="354" name="name">
+    <column id="391" parent="356" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="376" parent="354" name="police_number">
+    <column id="392" parent="356" name="police_number">
       <Position>4</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="377" parent="354" name="color">
+    <column id="393" parent="356" name="color">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
     </column>
-    <index id="378" parent="354" name="user_id">
+    <column id="394" parent="356" name="type">
+      <Position>6</Position>
+      <DataType>enum(&apos;motocycle&apos;, &apos;car&apos;)|0e</DataType>
+    </column>
+    <index id="395" parent="356" name="user_id">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="379" parent="354" name="PRIMARY">
+    <key id="396" parent="356" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="380" parent="354" name="vehicles_ibfk_1">
+    <foreign-key id="397" parent="356" name="vehicles_ibfk_1">
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>

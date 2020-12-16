@@ -1,4 +1,4 @@
-package com.tubes.model;
+package com.tubes.Model;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -12,6 +12,7 @@ public class UsersEntity {
     private String password;
     private String phone;
     private String address;
+    private Object role;
 
     @Id
     @Column(name = "id")
@@ -73,6 +74,16 @@ public class UsersEntity {
         this.address = address;
     }
 
+    @Basic
+    @Column(name = "role")
+    public Object getRole() {
+        return role;
+    }
+
+    public void setRole(Object role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -83,11 +94,12 @@ public class UsersEntity {
                 Objects.equals(username, that.username) &&
                 Objects.equals(password, that.password) &&
                 Objects.equals(phone, that.phone) &&
-                Objects.equals(address, that.address);
+                Objects.equals(address, that.address) &&
+                Objects.equals(role, that.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, username, password, phone, address);
+        return Objects.hash(id, name, username, password, phone, address, role);
     }
 }

@@ -1,4 +1,4 @@
-package com.tubes.model;
+package com.tubes.Model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

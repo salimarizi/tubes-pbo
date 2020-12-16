@@ -1,4 +1,4 @@
-package com.tubes.model;
+package com.tubes.Model;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,6 +10,7 @@ public class VehiclesEntity {
     private String name;
     private String policeNumber;
     private String color;
+    private Object type;
     private UsersEntity usersByUserId;
 
     @Id
@@ -52,6 +53,16 @@ public class VehiclesEntity {
         this.color = color;
     }
 
+    @Basic
+    @Column(name = "type")
+    public Object getType() {
+        return type;
+    }
+
+    public void setType(Object type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,12 +71,13 @@ public class VehiclesEntity {
         return id == that.id &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(policeNumber, that.policeNumber) &&
-                Objects.equals(color, that.color);
+                Objects.equals(color, that.color) &&
+                Objects.equals(type, that.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, policeNumber, color);
+        return Objects.hash(id, name, policeNumber, color, type);
     }
 
     @ManyToOne

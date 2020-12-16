@@ -1,28 +1,29 @@
 package com.tubes.DAO;
 
-import com.tubes.Model.ServicesEntity;
+import com.tubes.Model.SparepartsEntity;
+import com.tubes.Utility.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import com.tubes.Utility.HibernateUtil;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
-public class ServicesDAO implements DAOInterface<ServicesEntity> {
-
+public class SparepartsDAO implements DAOInterface<SparepartsEntity> {
     @Override
-    public List<ServicesEntity> fetchAll() {
-
+    public List<SparepartsEntity> fetchAll() {
         Session s = HibernateUtil.getSession();
         CriteriaBuilder builder = s.getCriteriaBuilder();
-        CriteriaQuery query = builder.createQuery(ServicesEntity.class);
-        query.from(ServicesEntity.class);
-        List<ServicesEntity> services = s.createQuery(query).getResultList();
-        return services;
+        CriteriaQuery query = builder.createQuery(SparepartsEntity.class);
+        query.from(SparepartsEntity.class);
+
+        List<SparepartsEntity> spareparts = s.createQuery(query).getResultList();
+        s.close();
+        return spareparts;
     }
 
     @Override
-    public int insertData(ServicesEntity object){
+    public int insertData(SparepartsEntity object) {
         Session s = HibernateUtil.getSession();
         Transaction t = s.beginTransaction();
         s.save(object);
@@ -32,7 +33,7 @@ public class ServicesDAO implements DAOInterface<ServicesEntity> {
     }
 
     @Override
-    public int editData(ServicesEntity object){
+    public int editData(SparepartsEntity object) {
         Session s = HibernateUtil.getSession();
         Transaction t  = s.beginTransaction();
         s.update(object);
@@ -42,7 +43,7 @@ public class ServicesDAO implements DAOInterface<ServicesEntity> {
     }
 
     @Override
-    public int deleteData(ServicesEntity object){
+    public int deleteData(SparepartsEntity object) {
         Session s = HibernateUtil.getSession();
         Transaction t  = s.beginTransaction();
         s.delete(object);

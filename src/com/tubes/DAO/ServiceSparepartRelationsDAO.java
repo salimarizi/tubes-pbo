@@ -1,28 +1,29 @@
 package com.tubes.DAO;
 
-import com.tubes.Model.ServicesEntity;
+import com.tubes.Model.ServiceSparepartRelationsEntity;
+import com.tubes.Utility.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import com.tubes.Utility.HibernateUtil;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
-public class ServicesDAO implements DAOInterface<ServicesEntity> {
-
+public class ServiceSparepartRelationsDAO implements DAOInterface<ServiceSparepartRelationsEntity> {
     @Override
-    public List<ServicesEntity> fetchAll() {
-
+    public List<ServiceSparepartRelationsEntity> fetchAll() {
         Session s = HibernateUtil.getSession();
         CriteriaBuilder builder = s.getCriteriaBuilder();
-        CriteriaQuery query = builder.createQuery(ServicesEntity.class);
-        query.from(ServicesEntity.class);
-        List<ServicesEntity> services = s.createQuery(query).getResultList();
-        return services;
+        CriteriaQuery query = builder.createQuery(ServiceSparepartRelationsEntity.class);
+        query.from(ServiceSparepartRelationsEntity.class);
+
+        List<ServiceSparepartRelationsEntity> serviceSpareparts = s.createQuery(query).getResultList();
+        s.close();
+        return serviceSpareparts;
     }
 
     @Override
-    public int insertData(ServicesEntity object){
+    public int insertData(ServiceSparepartRelationsEntity object) {
         Session s = HibernateUtil.getSession();
         Transaction t = s.beginTransaction();
         s.save(object);
@@ -32,7 +33,7 @@ public class ServicesDAO implements DAOInterface<ServicesEntity> {
     }
 
     @Override
-    public int editData(ServicesEntity object){
+    public int editData(ServiceSparepartRelationsEntity object) {
         Session s = HibernateUtil.getSession();
         Transaction t  = s.beginTransaction();
         s.update(object);
@@ -42,7 +43,7 @@ public class ServicesDAO implements DAOInterface<ServicesEntity> {
     }
 
     @Override
-    public int deleteData(ServicesEntity object){
+    public int deleteData(ServiceSparepartRelationsEntity object) {
         Session s = HibernateUtil.getSession();
         Transaction t  = s.beginTransaction();
         s.delete(object);

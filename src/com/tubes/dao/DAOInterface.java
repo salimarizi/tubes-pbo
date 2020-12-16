@@ -1,4 +1,4 @@
-package com.tubes.dao;
+package com.tubes.DAO;
 
 import java.sql.SQLException;
 import java.util.List;

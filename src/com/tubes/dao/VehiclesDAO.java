@@ -1,8 +1,8 @@
-package com.tubes.dao;
+package com.tubes.DAO;
 
-import com.tubes.model.VehiclesEntity;
-import com.tubes.dao.DAOInterface;
-import com.tubes.utility.hibernateUtil;
+import com.tubes.Model.VehiclesEntity;
+import com.tubes.DAO.DAOInterface;
+import com.tubes.Utility.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class VehiclesDAO implements DAOInterface<VehiclesEntity> {
     @Override
     public List<VehiclesEntity> fetchAll() {
-        Session s = hibernateUtil.getSession();
+        Session s = HibernateUtil.getSession();
         CriteriaBuilder builder = s.getCriteriaBuilder();
         CriteriaQuery query = builder.createQuery(VehiclesEntity.class);
         query.from(VehiclesEntity.class);
@@ -25,7 +25,7 @@ public class VehiclesDAO implements DAOInterface<VehiclesEntity> {
 
     @Override
     public int insertData(VehiclesEntity object) {
-        Session s = hibernateUtil.getSession();
+        Session s = HibernateUtil.getSession();
         Transaction t = s.beginTransaction();
         s.save(object);
         t.commit();
@@ -35,7 +35,7 @@ public class VehiclesDAO implements DAOInterface<VehiclesEntity> {
 
     @Override
     public int editData(VehiclesEntity object) {
-        Session s = hibernateUtil.getSession();
+        Session s = HibernateUtil.getSession();
         Transaction t  = s.beginTransaction();
         s.update(object);
         t.commit();
@@ -45,7 +45,7 @@ public class VehiclesDAO implements DAOInterface<VehiclesEntity> {
 
     @Override
     public int deleteData(VehiclesEntity object) {
-        Session s = hibernateUtil.getSession();
+        Session s = HibernateUtil.getSession();
         Transaction t  = s.beginTransaction();
         s.delete(object);
         t.commit();

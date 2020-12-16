@@ -4,7 +4,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="a.xml" value="09803a5a-850e-4565-a004-c35ea872f9b8" />
+          <unit-entry name="a.xml" value="6ce0349e-802b-4499-9366-e3243c38e6e5" />
           <unit-entry name="hibernate.cfg.xml" />
         </datasource-map>
         <naming-strategy-map />
@@ -19,6 +19,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="jfoenix-9.0.10" level="project" />
     <orderEntry type="library" name="Hibernate 5.4.11-5.4.11" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-java:8.0.22" level="project" />
   </component>
