@@ -68,17 +68,11 @@
                            </font>
                         </JFXButton>
                         <JFXButton prefHeight="115.0" prefWidth="206.0" style="-fx-background-color: #FEC001;" text="Jumlah Pelanggan" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
-                           </HBox.margin>
                            <font>
                               <Font size="18.0" />
                            </font>
                         </JFXButton>
                         <JFXButton prefHeight="115.0" prefWidth="206.0" style="-fx-background-color: #1BA345;" text="Pendapatan Hari Ini" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
-                           </HBox.margin>
                            <font>
                               <Font size="18.0" />
                            </font>
