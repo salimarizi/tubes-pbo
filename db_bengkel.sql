@@ -68,7 +68,6 @@ CREATE TABLE `services`  (
 
 -- ----------------------------
 -- Table structure for spareparts
--- ----------------------------
 DROP TABLE IF EXISTS `spareparts`;
 CREATE TABLE `spareparts`  (
   `id` int(10) NOT NULL AUTO_INCREMENT,
