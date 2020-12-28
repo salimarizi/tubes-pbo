@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class JdbcDao {
 
     // Replace below database url, username and password with your actual database credentials
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/db_bengkel";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/db_bengkel?serverTimezone=UTC";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "";
     private static final String SELECT_QUERY = "SELECT * FROM users WHERE username = ? and password = ?";

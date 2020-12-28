@@ -11,9 +11,9 @@
    <children>
       <Pane prefHeight="326.0" prefWidth="308.0" style="-fx-background-color: #ffffff;">
          <children>
-            <JFXTextField focusColor="#ff4455" layoutX="47.0" layoutY="132.0" prefHeight="25.0" prefWidth="202.0" promptText="Username" />
-            <JFXPasswordField focusColor="#ff4455" layoutX="47.0" layoutY="193.0" prefHeight="25.0" prefWidth="202.0" promptText="Password" />
-            <JFXButton buttonType="RAISED" ellipsisString="" layoutX="47.0" layoutY="255.0" prefHeight="35.0" prefWidth="202.0" ripplerFill="WHITE" style="-fx-background-color: #FF4455;" text="Login" textFill="WHITE" />
+            <JFXTextField focusColor="#ff4455" layoutX="47.0" layoutY="132.0" prefHeight="25.0" fx:id="usernameField" prefWidth="202.0" promptText="Username" />
+            <JFXPasswordField focusColor="#ff4455" layoutX="47.0" layoutY="193.0" prefHeight="25.0" fx:id="passwordField" prefWidth="202.0" promptText="Password" />
+            <JFXButton buttonType="RAISED" ellipsisString="" layoutX="47.0" layoutY="255.0" prefHeight="35.0" fx:id="submitButton" onAction="#login" prefWidth="202.0" ripplerFill="WHITE" style="-fx-background-color: #FF4455;" text="Login" textFill="WHITE" />
             <Label layoutX="114.0" layoutY="36.0" prefHeight="36.0" prefWidth="68.0" text="Login" textFill="#ff4455">
                <font>
                   <Font name="Segoe UI Bold" size="25.0" />
