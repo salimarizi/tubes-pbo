@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("View/MainLayout.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("View/LoginLayout.fxml"));
         stage.setTitle("Login Tubes");
         stage.setScene(new Scene(root));
         stage.show();
