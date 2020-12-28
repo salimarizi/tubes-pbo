@@ -1,6 +1,7 @@
 package com.tubes.Controller.Users;
 
 import com.jfoenix.controls.JFXButton;
+import com.tubes.DAO.UsersDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,14 +20,14 @@ public class UserController {
     public JFXButton btnEditData;
     public JFXButton btnDeleteData;
     String modalType;
-
+    public static UsersDAO usersDAO = new UsersDAO();
 
     public void showFormUser() {
         try {
             Stage stage = new Stage();
 
             FXMLLoader fxml = new FXMLLoader();
-            fxml.setLocation(UserController.class.getResource("View/Users/UserForm.fxml"));
+            fxml.setLocation(UserController.class.getResource("../../View/Users/UserForm.fxml"));
             Parent root = fxml.load();
             FormUserController modal_match = fxml.getController();
             modal_match.setController(this);

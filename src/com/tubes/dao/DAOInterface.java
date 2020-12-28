@@ -1,16 +1,14 @@
 package com.tubes.DAO;
 
-import java.sql.SQLException;
 import java.util.List;
 
-public interface DAOInterface<T> {
+public interface DAOInterface<E> {
 
-    List<T> fetchAll();
+    public List<E> fetchAll();
 
-    int insertData(T object);
+    public int insertData(E data);
 
-    int editData(T object);
+    public int editData(E data);
 
-    int deleteData(T object);
-
+    public int deleteData(E data);
 }

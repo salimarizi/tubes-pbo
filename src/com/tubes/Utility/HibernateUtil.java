@@ -15,4 +15,19 @@ public class HibernateUtil {
 
 
     }
+
+    private static SessionFactory sessionFactory;
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    static {
+        try {
+            Configuration configuration = new Configuration().configure();
+            sessionFactory = configuration.buildSessionFactory();
+        } catch (Throwable ex) {
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
 }

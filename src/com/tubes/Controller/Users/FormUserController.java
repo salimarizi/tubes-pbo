@@ -3,6 +3,7 @@ package com.tubes.Controller.Users;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import com.tubes.Model.UsersEntity;
 import javafx.event.ActionEvent;
 
 public class FormUserController {
@@ -20,7 +21,12 @@ public class FormUserController {
     }
 
     public void submitData(ActionEvent actionEvent) {
+        if (main.modalType.equals("add")){
+            UsersEntity user = new UsersEntity(txtNama.getText(), txtUsername.getText(), txtPassword.getText(), txtTelepon.getText(), txtAlamat.getText(), "member");
+            main.usersDAO.insertData(user);
+        }else {
 
+        }
     }
 
     public void cancelProcess(ActionEvent actionEvent) {

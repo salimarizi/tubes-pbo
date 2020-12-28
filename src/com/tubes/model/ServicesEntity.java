@@ -11,8 +11,6 @@ public class ServicesEntity {
     private Timestamp date;
     private String problem;
     private String action;
-    private VehiclesEntity vehiclesByVehicleId;
-    private UsersEntity usersByTechnicianId;
 
     @Id
     @Column(name = "id")
@@ -68,25 +66,5 @@ public class ServicesEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, date, problem, action);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "vehicle_id", referencedColumnName = "id", nullable = false)
-    public VehiclesEntity getVehiclesByVehicleId() {
-        return vehiclesByVehicleId;
-    }
-
-    public void setVehiclesByVehicleId(VehiclesEntity vehiclesByVehicleId) {
-        this.vehiclesByVehicleId = vehiclesByVehicleId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "technician_id", referencedColumnName = "id", nullable = false)
-    public UsersEntity getUsersByTechnicianId() {
-        return usersByTechnicianId;
-    }
-
-    public void setUsersByTechnicianId(UsersEntity usersByTechnicianId) {
-        this.usersByTechnicianId = usersByTechnicianId;
     }
 }

@@ -1,6 +1,8 @@
 package com.tubes.DAO;
 
+import com.tubes.Model.ServicesEntity;
 import com.tubes.Model.UsersEntity;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import com.tubes.Utility.HibernateUtil;
@@ -9,8 +11,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 public class UsersDAO implements DAOInterface<UsersEntity> {
-
-
     @Override
     public List<UsersEntity> fetchAll() {
         Session s = HibernateUtil.getSession();
@@ -24,7 +24,7 @@ public class UsersDAO implements DAOInterface<UsersEntity> {
     }
 
     @Override
-    public int insertData(UsersEntity object) {
+    public int insertData(UsersEntity object){
         Session s = HibernateUtil.getSession();
         Transaction t = s.beginTransaction();
         s.save(object);

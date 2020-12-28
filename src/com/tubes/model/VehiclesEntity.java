@@ -10,7 +10,7 @@ public class VehiclesEntity {
     private String name;
     private String policeNumber;
     private String color;
-    private Object type;
+    private String type;
     private UsersEntity usersByUserId;
 
     @Id
@@ -55,11 +55,11 @@ public class VehiclesEntity {
 
     @Basic
     @Column(name = "type")
-    public Object getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Object type) {
+    public void setType(String type) {
         this.type = type;
     }
 

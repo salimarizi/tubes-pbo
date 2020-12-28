@@ -1,7 +1,6 @@
 package com.tubes.DAO;
 
 import com.tubes.Model.VehiclesEntity;
-import com.tubes.DAO.DAOInterface;
 import com.tubes.Utility.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

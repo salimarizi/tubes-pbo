@@ -12,7 +12,20 @@ public class UsersEntity {
     private String password;
     private String phone;
     private String address;
-    private Object role;
+    private String role;
+
+    public UsersEntity(){
+
+    }
+
+    public UsersEntity(String name, String username, String password, String phone, String address, String role){
+        setName(name);
+        setUsername(username);
+        setPassword(password);
+        setPhone(phone);
+        setAddress(address);
+        setRole(role);
+    }
 
     @Id
     @Column(name = "id")
@@ -76,11 +89,11 @@ public class UsersEntity {
 
     @Basic
     @Column(name = "role")
-    public Object getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Object role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -101,5 +114,18 @@ public class UsersEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, username, password, phone, address, role);
+    }
+
+    @Override
+    public String toString() {
+        return "UsersEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }
