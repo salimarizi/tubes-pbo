@@ -87,7 +87,7 @@ public class UserController {
     }
 
     public void deleteUser(ActionEvent actionEvent) {
-        UsersEntity pasien = this.getSelectedUser();
+        UsersEntity user = this.getSelectedUser();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Data");
@@ -96,7 +96,7 @@ public class UserController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            usersDAO.deleteData(pasien);
+            usersDAO.deleteData(user);
             this.refreshData();
             alert.close();
         } else {
