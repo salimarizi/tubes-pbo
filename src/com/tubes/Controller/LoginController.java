@@ -5,7 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class MainController {
+public class LoginController {
     public ImageView imageView;
 
     public void initialize(){
