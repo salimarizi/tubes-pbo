@@ -18,6 +18,13 @@ public class FormUserController {
 
     public void setController(UserController main){
         this.main = main;
+        if (main.modalType.equals("edit")){
+            txtNama.setText(main.getSelectedUser().getName());
+            txtUsername.setText(main.getSelectedUser().getUsername());
+            txtPassword.setText(main.getSelectedUser().getPassword());
+            txtTelepon.setText(main.getSelectedUser().getPhone());
+            txtAlamat.setText(main.getSelectedUser().getAddress());
+        }
     }
 
     public void submitData(ActionEvent actionEvent) {
