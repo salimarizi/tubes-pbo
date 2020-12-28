@@ -27,6 +27,16 @@ public class UsersEntity {
         setRole(role);
     }
 
+    public UsersEntity(Integer id, String name, String username, String password, String phone, String address, String role){
+        setId(id);
+        setName(name);
+        setUsername(username);
+        setPassword(password);
+        setPhone(phone);
+        setAddress(address);
+        setRole(role);
+    }
+
     @Id
     @Column(name = "id")
     public int getId() {

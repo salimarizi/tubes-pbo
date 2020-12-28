@@ -25,8 +25,10 @@ public class FormUserController {
             UsersEntity user = new UsersEntity(txtNama.getText(), txtUsername.getText(), txtPassword.getText(), txtTelepon.getText(), txtAlamat.getText(), "member");
             main.usersDAO.insertData(user);
         }else {
-
+            UsersEntity user = new UsersEntity(this.main.getSelectedUser().getId(), txtNama.getText(), txtUsername.getText(), txtPassword.getText(), txtTelepon.getText(), txtAlamat.getText(), "member");
+            main.usersDAO.editData(user);
         }
+        this.main.refreshData();
     }
 
     public void cancelProcess(ActionEvent actionEvent) {

@@ -2,10 +2,17 @@ package com.tubes.Controller.Users;
 
 import com.jfoenix.controls.JFXButton;
 import com.tubes.DAO.UsersDAO;
+import com.tubes.Model.UsersEntity;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -19,8 +26,19 @@ public class UserController {
     public JFXButton btnAddData;
     public JFXButton btnEditData;
     public JFXButton btnDeleteData;
+    public TableView tbData;
+    public TableColumn<UsersEntity, String> clName;
+    public TableColumn<UsersEntity, String> clUsername;
+    public TableColumn<UsersEntity, String> clTelepon;
+    public TableColumn<UsersEntity, String> clAlamat;
+
     String modalType;
+    public static ObservableList<UsersEntity> users;
     public static UsersDAO usersDAO = new UsersDAO();
+
+    public void initialize(){
+        this.refreshData();
+    }
 
     public void showFormUser() {
         try {
@@ -40,6 +58,20 @@ public class UserController {
             e.printStackTrace();
         }
     }
+
+    public void refreshData() {
+        users = FXCollections.observableArrayList();
+
+        users.addAll(usersDAO.fetchAll());
+
+        tbData.setItems(users);
+        clName.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getName()));
+        clUsername.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getUsername()));
+        clTelepon.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getPhone()));
+        clAlamat.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getAddress()));
+    }
+
+    public UsersEntity getSelectedUser(){ return (UsersEntity) tbData.getSelectionModel().getSelectedItem(); }
 
     public void addUser(ActionEvent actionEvent) {
         this.modalType = "add";
