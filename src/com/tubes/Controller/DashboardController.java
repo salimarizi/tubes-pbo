@@ -30,4 +30,19 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
+
+    public void showSparepartPage(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("../View/Spareparts/SparepartLayout.fxml"));
+            stage.setTitle("Spareparts Data");
+            stage.setScene(new Scene(root));
+            stage.show();
+            // Hide this current window (if this is what you want)
+            ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
