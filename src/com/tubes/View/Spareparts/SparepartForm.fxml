@@ -14,7 +14,7 @@
       <Label layoutX="43.0" layoutY="124.0" text="Harga" />
       <JFXTextField fx:id="txtNama" layoutX="128.0" layoutY="40.0" prefHeight="25.0" prefWidth="403.0" />
       <JFXTextField fx:id="txtQuantity" layoutX="128.0" layoutY="79.0" prefHeight="25.0" prefWidth="403.0" />
-      <JFXTextField fx:id="txtHarga" layoutX="128.0" layoutY="121.0" prefHeight="25.0" prefWidth="403.0" />
+      <JFXTextField fx:id="txtPrice" layoutX="128.0" layoutY="121.0" prefHeight="25.0" prefWidth="403.0" />
       <JFXButton fx:id="btnSubmit" layoutX="477.0" layoutY="191.0" onAction="#submitData" style="-fx-background-color: #007E34;" text="Submit" textFill="WHITE" />
       <JFXButton fx:id="btnCancel" layoutX="407.0" layoutY="191.0" onAction="#cancelProcess" style="-fx-background-color: #E8EBEF;" text="Cancel" />
    </children>

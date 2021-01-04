@@ -12,6 +12,20 @@ public class SparepartsEntity {
     private Integer quantity;
     private BigDecimal price;
 
+    public SparepartsEntity(int id, String text, Integer integer, BigDecimal bigDecimal){
+
+    }
+
+    public SparepartsEntity(String name, Integer quantity, BigDecimal price){
+        setName(name);
+        setQuantity(quantity);
+        setPrice(price);
+    }
+
+    public SparepartsEntity() {
+
+    }
+
     @Id
     @Column(name = "id")
     public int getId() {
