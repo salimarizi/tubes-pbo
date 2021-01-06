@@ -22,9 +22,6 @@ public class SparepartsEntity {
         setPrice(price);
     }
 
-    public SparepartsEntity() {
-
-    }
 
     @Id
     @Column(name = "id")

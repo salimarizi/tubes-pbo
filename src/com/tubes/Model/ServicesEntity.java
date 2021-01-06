@@ -2,13 +2,14 @@ package com.tubes.Model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 @Table(name = "services", schema = "db_bengkel", catalog = "")
 public class ServicesEntity {
     private int id;
-    private Timestamp date;
+    private LocalDate date;
     private String problem;
     private String action;
 
@@ -24,11 +25,11 @@ public class ServicesEntity {
 
     @Basic
     @Column(name = "date")
-    public Timestamp getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

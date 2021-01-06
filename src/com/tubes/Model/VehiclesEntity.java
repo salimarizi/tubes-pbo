@@ -1,5 +1,7 @@
 package com.tubes.Model;
 
+import javafx.collections.ObservableList;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -12,6 +14,18 @@ public class VehiclesEntity {
     private String color;
     private String type;
     private UsersEntity usersByUserId;
+
+    public VehiclesEntity(String name, String policeNumber, String color, String type, UsersEntity usersByUserId) {
+        setName(name);
+        setPoliceNumber(policeNumber);
+        setColor(color);
+        setType(type);
+        setUsersByUserId(usersByUserId);
+    }
+
+    public VehiclesEntity() {
+    }
+
 
     @Id
     @Column(name = "id")
