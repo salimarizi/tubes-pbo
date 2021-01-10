@@ -3,17 +3,13 @@ package com.tubes.Controller.Vehicles;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import com.tubes.Controller.Spareparts.SparepartController;
-import com.tubes.Controller.Vehicles.VehicleController;
 import com.tubes.DAO.UsersDAO;
-import com.tubes.Model.SparepartsEntity;
 import com.tubes.Model.UsersEntity;
 import com.tubes.Model.VehiclesEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-
-import java.math.BigDecimal;
+import javafx.scene.Node;
 
 public class FormVehicleController {
     public JFXTextField txtNama;
@@ -57,8 +53,14 @@ public class FormVehicleController {
             main.vehiclesDAO.editData(vehicle);
         }
         this.main.refreshData();
+        closeForm(actionEvent);
     }
 
     public void cancelProcess(ActionEvent actionEvent) {
+        closeForm(actionEvent);
+    }
+
+    public void closeForm(ActionEvent actionEvent){
+        ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
     }
 }

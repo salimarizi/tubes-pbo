@@ -127,4 +127,9 @@ public class VehiclesEntity {
     public void setUsersByUserId(UsersEntity usersByUserId) {
         this.usersByUserId = usersByUserId;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

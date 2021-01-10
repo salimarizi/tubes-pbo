@@ -18,6 +18,27 @@ public class ServicesEntity {
     private VehiclesEntity vehiclesByVehicleId;
     private UsersEntity usersByTechnicianId;
 
+    public ServicesEntity(){
+
+    }
+
+    public ServicesEntity(VehiclesEntity vehicle, UsersEntity technician, Timestamp date, String problem, String action){
+        setVehiclesByVehicleId(vehicle);
+        setUsersByTechnicianId(technician);
+        setDate(date);
+        setProblem(problem);
+        setAction(action);
+    }
+
+    public ServicesEntity(Integer id, VehiclesEntity vehicle, UsersEntity technician, Timestamp date, String problem, String action){
+        setId(id);
+        setVehiclesByVehicleId(vehicle);
+        setUsersByTechnicianId(technician);
+        setDate(date);
+        setProblem(problem);
+        setAction(action);
+    }
+
     @Id
     @Column(name = "id")
     public int getId() {

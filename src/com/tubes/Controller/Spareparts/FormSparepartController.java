@@ -6,6 +6,7 @@ import com.tubes.Controller.Spareparts.SparepartController;
 import com.tubes.Model.SparepartsEntity;
 import com.tubes.Model.UsersEntity;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 
 import java.math.BigDecimal;
 
@@ -36,8 +37,14 @@ public class FormSparepartController {
             main.sparepartsDAO.editData(sparepart);
         }
         this.main.refreshData();
+        closeForm(actionEvent);
     }
 
     public void cancelProcess(ActionEvent actionEvent) {
+        closeForm(actionEvent);
+    }
+
+    public void closeForm(ActionEvent actionEvent){
+        ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
     }
 }

@@ -2,6 +2,8 @@ package com.tubes.Controller.Services;
 
 
 import com.jfoenix.controls.JFXButton;
+import com.tubes.Controller.Spareparts.FormSparepartController;
+import com.tubes.Controller.Spareparts.SparepartController;
 import com.tubes.DAO.ServicesDAO;
 import com.tubes.Model.ServicesEntity;
 import com.tubes.Model.VehiclesEntity;
@@ -60,7 +62,22 @@ public class ServiceController {
     }
 
     public void showFormService() {
+        try {
+            Stage stage = new Stage();
 
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(SparepartController.class.getResource("../../View/Services/ServiceForm.fxml"));
+            Parent root = fxml.load();
+            FormServiceController modal_match = fxml.getController();
+            modal_match.setController(this);
+
+            stage.setTitle(this.modalType == "add" ? "Add New Service" : "Update Service");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void editService(ActionEvent actionEvent) {

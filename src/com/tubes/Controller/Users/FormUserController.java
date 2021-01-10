@@ -8,6 +8,7 @@ import com.tubes.Model.UsersEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 
 public class FormUserController {
     public JFXTextField txtNama;
@@ -50,8 +51,14 @@ public class FormUserController {
             main.usersDAO.editData(user);
         }
         this.main.refreshData();
+        closeForm(actionEvent);
     }
 
     public void cancelProcess(ActionEvent actionEvent) {
+        closeForm(actionEvent);
+    }
+
+    public void closeForm(ActionEvent actionEvent){
+        ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
     }
 }
