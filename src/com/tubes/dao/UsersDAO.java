@@ -6,6 +6,8 @@ import com.tubes.Utility.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
@@ -51,5 +53,18 @@ public class UsersDAO implements DAOInterface<UsersEntity> {
         t.commit();
         s.close();
         return 0;
+    }
+
+    public List<UsersEntity> login(String username, String password) {
+        int check = 0;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String hql = "FROM UsersEntity WHERE username = :username AND password = :password";
+        Query query = session.createQuery(hql);
+        query.setParameter("username", username);
+        query.setParameter("password", password);
+        List<UsersEntity> users = query.list();
+        session.close();
+
+        return users;
     }
 }

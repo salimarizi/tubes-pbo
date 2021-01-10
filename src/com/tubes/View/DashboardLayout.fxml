@@ -26,7 +26,7 @@
                         <Image url="@../../../../assets/Avatar.jpg" />
                      </image>
                   </ImageView>
-                  <Label text="Admin Bengkel" textFill="WHITE">
+                  <Label text="Admin Bengkel" fx:id="username2" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -50,7 +50,7 @@
                   <HBox prefHeight="66.0" prefWidth="601.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" text="Admin Bengkel">
+                        <Label alignment="CENTER" text="Admin Bengkel" fx:id="username">
                            <font>
                               <Font size="14.0" />
                            </font>

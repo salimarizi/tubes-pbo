@@ -4,6 +4,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.tubes.DAO.JdbcDao;
+import com.tubes.DAO.UsersDAO;
+import com.tubes.Model.UsersEntity;
+import com.tubes.Utility.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,6 +20,7 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class LoginController {
     public ImageView imageView;
@@ -49,9 +53,15 @@ public class LoginController {
         JdbcDao jdbcDao = new JdbcDao();
         boolean flag = jdbcDao.validate(username, password);
 
-        if(!flag) {
+        UsersDAO user = new UsersDAO();
+        List<UsersEntity> users = user.login(username, password);
+
+        if(users.size() == 0) {
             infoBox("Please enter correct Username and Password", null, "Failed");
         }else {
+            UsersEntity currentUser = users.get(0);
+            UserSession.getInstace(currentUser.getId(), currentUser.getName(), currentUser.getUsername(), currentUser.getRole());
+
             try {
                 Stage stage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("../View/DashboardLayout.fxml"));
