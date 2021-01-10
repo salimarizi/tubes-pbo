@@ -35,27 +35,28 @@ public class FormVehicleController {
         jenis.clear();
         jenis.add("Car");
         jenis.add("Motorcycle");
+        cbJenisKendaraan.setItems(jenis);
 
         pemilik.clear();
         pemilik.addAll(userDAO.fetchAll());
+        cbPemilik.setItems(pemilik);
 
-        cbJenisKendaraan.setItems(jenis);
         if (main.modalType.equals("edit")){
             txtNama.setText(main.getSelectedVehicle().getName());
             txtPlatNomor.setText(main.getSelectedVehicle().getPoliceNumber());
             txtWarna.setText(main.getSelectedVehicle().getColor());
         }
     }
-    public void submitData(ActionEvent actionEvent) {/*
+    public void submitData(ActionEvent actionEvent) {
         if (main.modalType.equals("add")){
-            *//*VehiclesEntity vehicle = new VehiclesEntity(txtNama.getText(),txtPlatNomor.getText(), txtWarna.getText(),cbJenisKendaraan.getValue().toString(),cbPemilik.getValue().getClass());*//*
+            VehiclesEntity vehicle = new VehiclesEntity(txtNama.getText(),txtPlatNomor.getText(), txtWarna.getText(),cbJenisKendaraan.getValue().toString(), (UsersEntity)cbPemilik.getValue());
             System.out.println(vehicle);
             main.vehiclesDAO.insertData(vehicle);
         }else {
-            VehiclesEntity vehicle = new VehiclesEntity(this.main.getSelectedVehicle().getId(), txtNama.getText(),txtPlatNomor.getText(), txtWarna.getText(),cbJenisKendaraan.getItems(),cbPemilik.getItems());
+            VehiclesEntity vehicle = new VehiclesEntity(main.getSelectedVehicle().getId(), txtNama.getText(),txtPlatNomor.getText(), txtWarna.getText(),cbJenisKendaraan.getValue().toString(), (UsersEntity)cbPemilik.getValue());
             main.vehiclesDAO.editData(vehicle);
         }
-        this.main.refreshData();*/
+        this.main.refreshData();
     }
 
     public void cancelProcess(ActionEvent actionEvent) {

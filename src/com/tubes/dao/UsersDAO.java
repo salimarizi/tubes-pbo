@@ -2,10 +2,10 @@ package com.tubes.DAO;
 
 import com.tubes.Model.ServicesEntity;
 import com.tubes.Model.UsersEntity;
+import com.tubes.Utility.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import com.tubes.Utility.HibernateUtil;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;

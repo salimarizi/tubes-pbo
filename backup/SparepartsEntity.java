@@ -2,7 +2,6 @@ package com.tubes.Model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -12,7 +11,6 @@ public class SparepartsEntity {
     private String name;
     private Integer quantity;
     private BigDecimal price;
-    private Collection<ServiceSparepartRelationsEntity> serviceSparepartRelationsById;
 
     public SparepartsEntity(){
 
@@ -30,6 +28,7 @@ public class SparepartsEntity {
         setQuantity(quantity);
         setPrice(price);
     }
+
 
     @Id
     @Column(name = "id")
@@ -85,14 +84,5 @@ public class SparepartsEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, quantity, price);
-    }
-
-    @OneToMany(mappedBy = "sparepartsBySparepartId")
-    public Collection<ServiceSparepartRelationsEntity> getServiceSparepartRelationsById() {
-        return serviceSparepartRelationsById;
-    }
-
-    public void setServiceSparepartRelationsById(Collection<ServiceSparepartRelationsEntity> serviceSparepartRelationsById) {
-        this.serviceSparepartRelationsById = serviceSparepartRelationsById;
     }
 }

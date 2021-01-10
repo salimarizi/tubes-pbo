@@ -1,7 +1,6 @@
 package com.tubes.Model;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -14,8 +13,6 @@ public class UsersEntity {
     private String phone;
     private String address;
     private String role;
-    private Collection<ServicesEntity> servicesById;
-    private Collection<VehiclesEntity> vehiclesById;
 
     public UsersEntity(){
 
@@ -129,26 +126,16 @@ public class UsersEntity {
         return Objects.hash(id, name, username, password, phone, address, role);
     }
 
-    @OneToMany(mappedBy = "usersByTechnicianId")
-    public Collection<ServicesEntity> getServicesById() {
-        return servicesById;
-    }
-
-    public void setServicesById(Collection<ServicesEntity> servicesById) {
-        this.servicesById = servicesById;
-    }
-
-    @OneToMany(mappedBy = "usersByUserId")
-    public Collection<VehiclesEntity> getVehiclesById() {
-        return vehiclesById;
-    }
-
-    public void setVehiclesById(Collection<VehiclesEntity> vehiclesById) {
-        this.vehiclesById = vehiclesById;
-    }
-
     @Override
     public String toString() {
-        return name;
+        return "UsersEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

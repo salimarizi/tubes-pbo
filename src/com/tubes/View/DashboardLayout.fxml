@@ -16,7 +16,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="237.0" prefWidth="173.0">
                <children>
-                  <JFXButton prefHeight="44.0" prefWidth="173.0" style="-fx-background-color: #AA2D38;" onAction="#showDashboard" text="Marnat Bengkel" textFill="WHITE">
+                  <JFXButton onAction="#showDashboard" prefHeight="44.0" prefWidth="173.0" style="-fx-background-color: #AA2D38;" text="Marnat Bengkel" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Black" size="14.0" />
                      </font>
@@ -39,6 +39,7 @@
             <JFXButton fx:id="btnService" onAction="#showServicePage" prefHeight="55.0" prefWidth="175.0" text="Service" textFill="WHITE" />
             <JFXButton fx:id="btnSparepart" onAction="#showSparepartPage" prefHeight="55.0" prefWidth="175.0" text="Sparepart" textFill="WHITE" />
             <JFXButton fx:id="btnUser" onAction="#showUserPage" prefHeight="55.0" prefWidth="175.0" text="User" textFill="WHITE" />
+            <JFXButton fx:id="btnVehicle" onAction="#showVehiclePage" prefHeight="55.0" prefWidth="175.0" text="Vehicle" textFill="WHITE" />
             <JFXButton fx:id="btnLogout" onAction="#showLogOut" prefHeight="55.0" prefWidth="175.0" text="Logout" textFill="WHITE" />
          </children>
       </VBox>

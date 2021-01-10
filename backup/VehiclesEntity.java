@@ -1,41 +1,31 @@
 package com.tubes.Model;
 
+import javafx.collections.ObservableList;
+
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "vehicles", schema = "db_bengkel", catalog = "")
 public class VehiclesEntity {
     private int id;
-    private int userId;
     private String name;
     private String policeNumber;
     private String color;
     private String type;
-    private Collection<ServicesEntity> servicesById;
     private UsersEntity usersByUserId;
+
+    public VehiclesEntity(String name, String policeNumber, String color, String type, UsersEntity usersByUserId) {
+        setName(name);
+        setPoliceNumber(policeNumber);
+        setColor(color);
+        setType(type);
+        setUsersByUserId(usersByUserId);
+    }
 
     public VehiclesEntity() {
     }
 
-    public VehiclesEntity(Integer id, String name, String policeNumber, String color, String type, UsersEntity usersByUserId) {
-        setId(id);
-        setName(name);
-        setPoliceNumber(policeNumber);
-        setColor(color);
-        setType(type);
-        setUsersByUserId(usersByUserId);
-    }
-
-    public VehiclesEntity(String name, String policeNumber, String color, String type, UsersEntity usersByUserId) {
-        setUserId(userId);
-        setName(name);
-        setPoliceNumber(policeNumber);
-        setColor(color);
-        setType(type);
-        setUsersByUserId(usersByUserId);
-    }
 
     @Id
     @Column(name = "id")
@@ -45,10 +35,6 @@ public class VehiclesEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     @Basic
@@ -97,7 +83,6 @@ public class VehiclesEntity {
         if (o == null || getClass() != o.getClass()) return false;
         VehiclesEntity that = (VehiclesEntity) o;
         return id == that.id &&
-                userId == that.userId &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(policeNumber, that.policeNumber) &&
                 Objects.equals(color, that.color) &&
@@ -106,16 +91,7 @@ public class VehiclesEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, name, policeNumber, color, type);
-    }
-
-    @OneToMany(mappedBy = "vehiclesByVehicleId")
-    public Collection<ServicesEntity> getServicesById() {
-        return servicesById;
-    }
-
-    public void setServicesById(Collection<ServicesEntity> servicesById) {
-        this.servicesById = servicesById;
+        return Objects.hash(id, name, policeNumber, color, type);
     }
 
     @ManyToOne
