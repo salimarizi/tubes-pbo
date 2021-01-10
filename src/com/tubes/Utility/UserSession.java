@@ -43,6 +43,7 @@ public final class UserSession {
     }
 
     public void cleanUserSession() {
+        instance = null;
         id = 0;// or null
         name = null; // or null
         username = null; // or null
