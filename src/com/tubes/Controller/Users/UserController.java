@@ -12,15 +12,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+import org.hibernate.internal.SessionImpl;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+
+import static com.tubes.Utility.HibernateUtil.getSession;
 
 public class UserController {
     public JFXButton btnService;
@@ -35,6 +41,9 @@ public class UserController {
     public TableColumn<UsersEntity, String> clUsername;
     public TableColumn<UsersEntity, String> clTelepon;
     public TableColumn<UsersEntity, String> clAlamat;
+    public Label username;
+    public JFXButton btnVehicle;
+    public JFXButton btnReports;
     UserSession user = UserSession.getInstace();
 
     String modalType;
@@ -42,6 +51,27 @@ public class UserController {
     public static UsersDAO usersDAO = new UsersDAO();
 
     public void initialize(){
+        username.setText(user.getName());
+        if (user.getRole().equals("member")){
+            btnService.setManaged(false);
+            btnService.setVisible(false);
+            btnSparepart.setManaged(false);
+            btnSparepart.setVisible(false);
+            btnUser.setManaged(false);
+            btnUser.setVisible(false);
+            btnVehicle.setManaged(false);
+            btnVehicle.setVisible(false);
+            btnVehicle.setManaged(false);
+            btnVehicle.setVisible(false);
+            btnReports.setManaged(false);
+            btnReports.setVisible(false);
+        }else if (user.getRole().equals("technician")){
+            btnUser.setManaged(false);
+            btnUser.setVisible(false);
+            btnSparepart.setManaged(false);
+            btnSparepart.setVisible(false);
+        }
+        
         this.refreshData();
     }
 
@@ -193,6 +223,19 @@ public class UserController {
             ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
         }
         catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showReports(ActionEvent actionEvent) {
+        JasperPrint jp;
+        Map param = new HashMap();
+        try {
+            jp = JasperFillManager.fillReport("report/ReportBengkel.jasper", param, ((SessionImpl)getSession()).connection());
+            JasperViewer viewer = new JasperViewer(jp, false);
+            viewer.setTitle("Laporan Marnat Bengkel");
+            viewer.setVisible(true);
+        } catch (JRException e) {
             e.printStackTrace();
         }
     }

@@ -95,4 +95,9 @@ public class SparepartsEntity {
     public void setServiceSparepartRelationsById(Collection<ServiceSparepartRelationsEntity> serviceSparepartRelationsById) {
         this.serviceSparepartRelationsById = serviceSparepartRelationsById;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

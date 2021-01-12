@@ -2,7 +2,6 @@ package com.tubes.Controller.Services;
 
 
 import com.jfoenix.controls.JFXButton;
-import com.tubes.Controller.Spareparts.FormSparepartController;
 import com.tubes.Controller.Spareparts.SparepartController;
 import com.tubes.DAO.ServicesDAO;
 import com.tubes.Model.ServicesEntity;
@@ -16,17 +15,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+import org.hibernate.internal.SessionImpl;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+
+import static com.tubes.Utility.HibernateUtil.getSession;
 
 
 public class ServiceController {
@@ -44,9 +48,35 @@ public class ServiceController {
     public String modalType;
     public static ObservableList<ServicesEntity> services;
     public static ServicesDAO servicesDAO = new ServicesDAO();
+    public JFXButton btnVehicle;
+    public JFXButton btnReports;
+    public Label username;
     UserSession user = UserSession.getInstace();
 
-    public void initialize(){ this.refreshData();}
+    public void initialize(){
+        username.setText(user.getName());
+        if (user.getRole().equals("member")){
+            btnService.setManaged(false);
+            btnService.setVisible(false);
+            btnSparepart.setManaged(false);
+            btnSparepart.setVisible(false);
+            btnUser.setManaged(false);
+            btnUser.setVisible(false);
+            btnVehicle.setManaged(false);
+            btnVehicle.setVisible(false);
+            btnVehicle.setManaged(false);
+            btnVehicle.setVisible(false);
+            btnReports.setManaged(false);
+            btnReports.setVisible(false);
+        }else if (user.getRole().equals("technician")){
+            btnUser.setManaged(false);
+            btnUser.setVisible(false);
+            btnSparepart.setManaged(false);
+            btnSparepart.setVisible(false);
+        }
+
+        this.refreshData();
+    }
 
     public void refreshData() {
         services = FXCollections.observableArrayList();
@@ -182,6 +212,38 @@ public class ServiceController {
             ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
         }
         catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void detailService(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(ServiceController.class.getResource("../../View/Services/Details/ServiceDetailLayout.fxml"));
+            Parent root = fxml.load();
+            ServiceDetailController modal_match = fxml.getController();
+            modal_match.setController(this);
+
+            stage.setTitle("Service Detail");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showReports(ActionEvent actionEvent) {
+        JasperPrint jp;
+        Map param = new HashMap();
+        try {
+            jp = JasperFillManager.fillReport("report/ReportBengkel.jasper", param, ((SessionImpl)getSession()).connection());
+            JasperViewer viewer = new JasperViewer(jp, false);
+            viewer.setTitle("Laporan Marnat Bengkel");
+            viewer.setVisible(true);
+        } catch (JRException e) {
             e.printStackTrace();
         }
     }

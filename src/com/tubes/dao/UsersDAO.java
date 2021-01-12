@@ -56,7 +56,6 @@ public class UsersDAO implements DAOInterface<UsersEntity> {
     }
 
     public List<UsersEntity> login(String username, String password) {
-        int check = 0;
         Session session = HibernateUtil.getSessionFactory().openSession();
         String hql = "FROM UsersEntity WHERE username = :username AND password = :password";
         Query query = session.createQuery(hql);

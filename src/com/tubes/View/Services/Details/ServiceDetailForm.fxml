@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="141.0" prefWidth="362.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes.Controller.Services.FormServiceDetailController">
+   <children>
+      <Label layoutX="43.0" layoutY="44.0" text="Sparepart" />
+      <JFXButton fx:id="btnSubmit" layoutX="248.0" layoutY="91.0" onAction="#submitData" style="-fx-background-color: #007E34;" text="Submit" textFill="WHITE" />
+      <JFXButton fx:id="btnCancel" layoutX="178.0" layoutY="91.0" onAction="#cancelProcess" style="-fx-background-color: #E8EBEF;" text="Cancel" />
+      <JFXComboBox fx:id="cbSparepart" layoutX="128.0" layoutY="40.0" prefHeight="25.0" prefWidth="174.0" />
+   </children>
+</AnchorPane>

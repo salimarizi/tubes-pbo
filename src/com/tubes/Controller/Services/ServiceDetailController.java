@@ -1,12 +1,10 @@
-package com.tubes.Controller.Spareparts;
+package com.tubes.Controller.Services;
 
 import com.jfoenix.controls.JFXButton;
-import com.tubes.Controller.Spareparts.FormSparepartController;
 import com.tubes.Controller.Spareparts.SparepartController;
 import com.tubes.DAO.SparepartsDAO;
-import com.tubes.DAO.UsersDAO;
+import com.tubes.Model.ServicesEntity;
 import com.tubes.Model.SparepartsEntity;
-import com.tubes.Model.UsersEntity;
 import com.tubes.Utility.UserSession;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -32,27 +30,50 @@ import java.util.Optional;
 
 import static com.tubes.Utility.HibernateUtil.getSession;
 
-public class SparepartController {
+public class ServiceDetailController {
+    public Label lbTanggal;
+    public Label lbTeknisi;
+    public Label lbKendaraan;
+    public Label lbKeluhan;
+    public Label lbTindakan;
+    public TableView tbData;
+    public TableColumn<SparepartsEntity, String> clSparepartName;
+    public TableColumn<SparepartsEntity, String> clSparepartPrice;
+    public JFXButton btnVehicle;
     public JFXButton btnService;
     public JFXButton btnSparepart;
     public JFXButton btnUser;
-    public JFXButton btnLogout;
-    public JFXButton btnAddData;
-    public JFXButton btnEditData;
-    public JFXButton btnDeleteData;
-    public TableView tbData;
-    public TableColumn<SparepartsEntity, String> clName;
-    public TableColumn<SparepartsEntity, String> clQuantity;
-    public TableColumn<SparepartsEntity, String> clPrice;
-    public String modalType;
-    public static ObservableList<SparepartsEntity> spareparts;
-    public static SparepartsDAO sparepartsDAO = new SparepartsDAO();
-    public JFXButton btnVehicle;
     public JFXButton btnReports;
     public Label username;
     UserSession user = UserSession.getInstace();
 
-    public void initialize(){
+    ServiceController main;
+    ServicesEntity selectedService;
+    public static SparepartsDAO sparepartsDAO = new SparepartsDAO();
+    public static ObservableList<SparepartsEntity> spareparts;
+
+    public void refreshData(){
+        spareparts = FXCollections.observableArrayList();
+        spareparts.addAll(sparepartsDAO.fetchServiceSparepart(selectedService.getId()));
+
+        tbData.setItems(spareparts);
+        clSparepartName.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getName()));
+        clSparepartPrice.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getPrice()));
+    }
+    
+    public void setController(ServiceController main) {
+        this.main = main;
+        selectedService = main.getSelectedService();
+
+        main.getSelectedService();
+        lbTanggal.setText(main.getSelectedService().getDate().toString());
+        lbTeknisi.setText(main.getSelectedService().getUsersByTechnicianId().getName());
+        lbKendaraan.setText(main.getSelectedService().getVehiclesByVehicleId().getName());
+        lbKeluhan.setText(main.getSelectedService().getProblem());
+        lbTindakan.setText(main.getSelectedService().getAction());
+
+        this.refreshData();
+
         username.setText(user.getName());
         if (user.getRole().equals("member")){
             btnService.setManaged(false);
@@ -73,74 +94,17 @@ public class SparepartController {
             btnSparepart.setManaged(false);
             btnSparepart.setVisible(false);
         }
-        
-        this.refreshData();
     }
 
-    public void showFormSparepart() {
+    public ServicesEntity getSelectedService(){
+        return selectedService;
+    }
+
+    public void showServicePage(ActionEvent actionEvent) {
         try {
             Stage stage = new Stage();
-
-            FXMLLoader fxml = new FXMLLoader();
-            fxml.setLocation(SparepartController.class.getResource("../../View/Spareparts/SparepartForm.fxml"));
-            Parent root = fxml.load();
-            FormSparepartController modal_match = fxml.getController();
-            modal_match.setController(this);
-
-            stage.setTitle(this.modalType == "add" ? "Add New Sparepart" : "Update Sparepart");
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void refreshData() {
-        spareparts = FXCollections.observableArrayList();
-
-        spareparts.addAll(sparepartsDAO.fetchAll());
-
-        tbData.setItems(spareparts);
-        clName.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getName()));
-        clQuantity.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getQuantity()));
-        clPrice.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getPrice()));
-    }
-    public SparepartsEntity getSelectedSparepart(){  return (SparepartsEntity) tbData.getSelectionModel().getSelectedItem(); }
-
-
-    public void addSparepart(ActionEvent actionEvent) {
-        this.modalType = "add";
-        showFormSparepart();
-    }
-
-    public void editSparepart(ActionEvent actionEvent) {
-        this.modalType = "edit";
-        showFormSparepart();
-    }
-
-    public void deleteSparepart(ActionEvent actionEvent) {
-        SparepartsEntity sparepart = this.getSelectedSparepart();
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete Data");
-        alert.setHeaderText("Confirmation");
-        alert.setContentText("Are you sure want to delete this data?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            sparepartsDAO.deleteData(sparepart);
-            this.refreshData();
-            alert.close();
-        } else {
-            alert.close();
-        }
-    }
-    public void showUserPage(ActionEvent actionEvent) {
-        try {
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("../../View/Users/UserLayout.fxml"));
-            stage.setTitle("Users Data");
+            Parent root = FXMLLoader.load(getClass().getResource("../../View/Services/ServiceLayout.fxml"));
+            stage.setTitle("Services Data");
             stage.setScene(new Scene(root));
             stage.show();
             // Hide this current window (if this is what you want)
@@ -166,12 +130,11 @@ public class SparepartController {
         }
     }
 
-    public void showLogOut(ActionEvent actionEvent) {
+    public void showUserPage(ActionEvent actionEvent) {
         try {
-            user.cleanUserSession();
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("../../View/LoginLayout.fxml"));
-            stage.setTitle("Login Tubes");
+            Parent root = FXMLLoader.load(getClass().getResource("../../View/Users/UserLayout.fxml"));
+            stage.setTitle("Users Data");
             stage.setScene(new Scene(root));
             stage.show();
             // Hide this current window (if this is what you want)
@@ -182,25 +145,11 @@ public class SparepartController {
         }
     }
 
-    public void showServicePage(ActionEvent actionEvent) {
+    public void showLogOut(ActionEvent actionEvent) {
         try {
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("../../View/Services/ServiceLayout.fxml"));
-            stage.setTitle("Services Data");
-            stage.setScene(new Scene(root));
-            stage.show();
-            // Hide this current window (if this is what you want)
-            ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void showDashboard(ActionEvent actionEvent) {
-        try {
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("../../View/DashboardLayout.fxml"));
-            stage.setTitle("Dashboard");
+            Parent root = FXMLLoader.load(getClass().getResource("../../View/LoginLayout.fxml"));
+            stage.setTitle("Login Tubes");
             stage.setScene(new Scene(root));
             stage.show();
             // Hide this current window (if this is what you want)
@@ -223,6 +172,42 @@ public class SparepartController {
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void addServiceDetail(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(SparepartController.class.getResource("../../View/Services/Details/ServiceDetailForm.fxml"));
+            Parent root = fxml.load();
+            FormServiceDetailController modal_match = fxml.getController();
+            modal_match.setController(this);
+
+            stage.setTitle("Tambah Sparepart");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteServiceDetail(ActionEvent actionEvent) {
+        ServicesEntity service = this.getSelectedService();
+
+        Alert alert = new Alert (Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Data");
+        alert.setHeaderText("Confirmation");
+        alert.setContentText("Are you sure want to delete this data?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            this.refreshData();
+            alert.close();
+        } else {
+            alert.close();
         }
     }
 

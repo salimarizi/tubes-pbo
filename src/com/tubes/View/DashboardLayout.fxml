@@ -26,22 +26,14 @@
                         <Image url="@../../../../assets/Avatar.jpg" />
                      </image>
                   </ImageView>
-                  <Label text="Admin Bengkel" fx:id="username2" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Label>
                </children>
             </VBox>
             <JFXButton fx:id="btnService" onAction="#showServicePage" prefHeight="55.0" prefWidth="175.0" text="Service" textFill="WHITE" />
             <JFXButton fx:id="btnSparepart" onAction="#showSparepartPage" prefHeight="55.0" prefWidth="175.0" text="Sparepart" textFill="WHITE" />
             <JFXButton fx:id="btnUser" onAction="#showUserPage" prefHeight="55.0" prefWidth="175.0" text="User" textFill="WHITE" />
             <JFXButton fx:id="btnVehicle" onAction="#showVehiclePage" prefHeight="55.0" prefWidth="175.0" text="Vehicle" textFill="WHITE" />
-            <JFXButton fx:id="btnLogout" onAction="#showLogOut" prefHeight="55.0" prefWidth="175.0" text="Logout" textFill="WHITE" />
             <JFXButton fx:id="btnReports" onAction="#showReports" prefHeight="55.0" prefWidth="175.0" text="Laporan" textFill="WHITE" />
+            <JFXButton fx:id="btnLogout" onAction="#showLogOut" prefHeight="55.0" prefWidth="175.0" text="Logout" textFill="WHITE" />
          </children>
       </VBox>
       <VBox layoutX="173.0" prefHeight="640.0" prefWidth="788.0">
@@ -51,7 +43,7 @@
                   <HBox prefHeight="66.0" prefWidth="601.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" text="Admin Bengkel" fx:id="username">
+                        <Label fx:id="username" alignment="CENTER" text="Admin Bengkel">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -64,17 +56,17 @@
                <children>
                   <HBox prefHeight="220.0" prefWidth="788.0">
                      <children>
-                        <JFXButton prefHeight="115.0" prefWidth="206.0" style="-fx-background-color: #0081FF;" text="Jumlah Service" textFill="WHITE">
+                        <JFXButton fx:id="bxJumlahService" prefHeight="115.0" prefWidth="206.0" style="-fx-background-color: #0081FF;" text="Jumlah Service" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton prefHeight="115.0" prefWidth="206.0" style="-fx-background-color: #FEC001;" text="Jumlah Pelanggan" textFill="WHITE">
+                        <JFXButton fx:id="bxJumlahPelanggan" prefHeight="115.0" prefWidth="206.0" style="-fx-background-color: #FEC001;" text="Jumlah Pelanggan" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton prefHeight="115.0" prefWidth="206.0" style="-fx-background-color: #1BA345;" text="Pendapatan Hari Ini" textFill="WHITE">
+                        <JFXButton fx:id="bxJumlahKendaraan" prefHeight="115.0" prefWidth="206.0" style="-fx-background-color: #1BA345;" text="Jumlah Kendaraan" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -84,12 +76,12 @@
                         <Insets bottom="10.0" left="50.0" right="10.0" top="20.0" />
                      </padding>
                   </HBox>
-                  <TableView prefHeight="401.0" prefWidth="788.0" style="-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b944);">
+                  <TableView fx:id="tbData" prefHeight="401.0" prefWidth="788.0" style="-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b944);">
                     <columns>
-                      <TableColumn prefWidth="148.0" style="-fx-background-color: red;" text="Tanggal" />
-                        <TableColumn prefWidth="200.0" text="Pelanggan" />
-                        <TableColumn prefWidth="200.0" text="Kendaraan" />
-                        <TableColumn prefWidth="239.0" text="Keluhan" />
+                      <TableColumn fx:id="clTanggal" prefWidth="148.0" text="Tanggal" />
+                        <TableColumn fx:id="clPelanggan" prefWidth="200.0" text="Teknisi" />
+                        <TableColumn fx:id="clKendaraan" prefWidth="200.0" text="Kendaraan" />
+                        <TableColumn fx:id="clKeluhan" prefWidth="239.0" text="Keluhan" />
                     </columns>
                   </TableView>
                </children>

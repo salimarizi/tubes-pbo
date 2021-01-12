@@ -26,20 +26,13 @@
                         <Image url="@../../../../../assets/Avatar.jpg" />
                      </image>
                   </ImageView>
-                  <Label text="Admin Bengkel" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Label>
                </children>
             </VBox>
             <JFXButton fx:id="btnService" onAction="#showServicePage" prefHeight="55.0" prefWidth="175.0" text="Service" textFill="WHITE" />
             <JFXButton fx:id="btnSparepart" onAction="#showSparepartPage" prefHeight="55.0" prefWidth="175.0" text="Sparepart" textFill="WHITE" />
             <JFXButton fx:id="btnUser" onAction="#showUserPage" prefHeight="55.0" prefWidth="175.0" text="User" textFill="WHITE" />
             <JFXButton fx:id="btnVehicle" onAction="#showVehiclePage" prefHeight="55.0" prefWidth="175.0" text="Vehicle" textFill="WHITE" />
+            <JFXButton fx:id="btnReports" onAction="#showReports" prefHeight="55.0" prefWidth="175.0" text="Laporan" textFill="WHITE" />
             <JFXButton fx:id="btnLogout" onAction="#showLogOut" prefHeight="55.0" prefWidth="175.0" text="Logout" textFill="WHITE" />
          </children>
       </VBox>
@@ -50,7 +43,7 @@
                   <HBox prefHeight="66.0" prefWidth="601.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" text="Admin Bengkel">
+                        <Label alignment="CENTER" fx:id="username" text="Admin Bengkel">
                            <font>
                               <Font size="14.0" />
                            </font>
