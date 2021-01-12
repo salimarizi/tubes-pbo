@@ -8,6 +8,7 @@ import com.tubes.Controller.Vehicles.VehicleController;
 import com.tubes.DAO.VehiclesDAO;
 import com.tubes.DAO.UsersDAO;
 import com.tubes.Model.VehiclesEntity;
+import com.tubes.Utility.UserSession;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +37,7 @@ public class VehicleController {
     public static ObservableList<VehiclesEntity> vehicle;
     public static VehiclesDAO vehiclesDAO = new VehiclesDAO();
     public static UsersDAO userDAO = new UsersDAO();
+    UserSession user = UserSession.getInstace();
 
     public void initialize(){
         this.refreshData();
@@ -132,6 +134,7 @@ public class VehicleController {
 
     public void showLogOut(ActionEvent actionEvent) {
         try {
+            user.cleanUserSession();
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("../../View/LoginLayout.fxml"));
             stage.setTitle("Login Tubes");

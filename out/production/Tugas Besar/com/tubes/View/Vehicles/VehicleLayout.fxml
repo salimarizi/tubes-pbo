@@ -10,23 +10,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes.Controller.DashboardController">
+<AnchorPane prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubes.Controller.Vehicles.VehicleController">
    <children>
       <VBox prefHeight="640.0" prefWidth="173.0" style="-fx-background-color: #FF4455;">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="237.0" prefWidth="173.0">
                <children>
-                  <JFXButton onAction="#showDashboard" prefHeight="44.0" prefWidth="173.0" style="-fx-background-color: #AA2D38;" text="Marnat Bengkel" textFill="WHITE">
+                  <JFXButton prefHeight="44.0" prefWidth="173.0" style="-fx-background-color: #AA2D38;" onAction="#showDashboard" text="Marnat Bengkel" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Black" size="14.0" />
                      </font>
                   </JFXButton>
                   <ImageView fitHeight="148.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../assets/Avatar.jpg" />
+                        <Image url="@../../../../../assets/Avatar.jpg" />
                      </image>
                   </ImageView>
-                  <Label text="Admin Bengkel" fx:id="username2" textFill="WHITE">
+                  <Label text="Admin Bengkel" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -41,7 +41,6 @@
             <JFXButton fx:id="btnUser" onAction="#showUserPage" prefHeight="55.0" prefWidth="175.0" text="User" textFill="WHITE" />
             <JFXButton fx:id="btnVehicle" onAction="#showVehiclePage" prefHeight="55.0" prefWidth="175.0" text="Vehicle" textFill="WHITE" />
             <JFXButton fx:id="btnLogout" onAction="#showLogOut" prefHeight="55.0" prefWidth="175.0" text="Logout" textFill="WHITE" />
-            <JFXButton fx:id="btnReports" onAction="#showReports" prefHeight="55.0" prefWidth="175.0" text="Laporan" textFill="WHITE" />
          </children>
       </VBox>
       <VBox layoutX="173.0" prefHeight="640.0" prefWidth="788.0">
@@ -51,7 +50,7 @@
                   <HBox prefHeight="66.0" prefWidth="601.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" text="Admin Bengkel" fx:id="username">
+                        <Label alignment="CENTER" text="Admin Bengkel">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -62,34 +61,23 @@
             </HBox>
             <VBox prefHeight="575.0" prefWidth="788.0">
                <children>
-                  <HBox prefHeight="220.0" prefWidth="788.0">
-                     <children>
-                        <JFXButton prefHeight="115.0" prefWidth="206.0" style="-fx-background-color: #0081FF;" text="Jumlah Service" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton prefHeight="115.0" prefWidth="206.0" style="-fx-background-color: #FEC001;" text="Jumlah Pelanggan" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton prefHeight="115.0" prefWidth="206.0" style="-fx-background-color: #1BA345;" text="Pendapatan Hari Ini" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="75.0" prefWidth="788.0">
                      <padding>
                         <Insets bottom="10.0" left="50.0" right="10.0" top="20.0" />
                      </padding>
+                     <children>
+                        <JFXButton fx:id="btnAddData" onAction="#addVehicle" style="-fx-background-color: #0E47A1;" text="Tambah Kendaraan" textFill="WHITE">
+                        </JFXButton>
+                        <JFXButton fx:id="btnEditData" onAction="#editVehicle" style="-fx-background-color: #007E34;" text="Edit Kendaraan" textFill="WHITE">
+                        </JFXButton>
+                        <JFXButton fx:id="btnDeleteData" onAction="#deleteVehicle" style="-fx-background-color: #FF4455;" text="Delete Kendaraan" textFill="WHITE" />
+                     </children>
                   </HBox>
-                  <TableView prefHeight="401.0" prefWidth="788.0" style="-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b944);">
+                  <TableView fx:id="tbData" prefHeight="495.0" prefWidth="788.0" style="-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b944);">
                     <columns>
-                      <TableColumn prefWidth="148.0" style="-fx-background-color: red;" text="Tanggal" />
-                        <TableColumn prefWidth="200.0" text="Pelanggan" />
-                        <TableColumn prefWidth="200.0" text="Kendaraan" />
-                        <TableColumn prefWidth="239.0" text="Keluhan" />
+                      <TableColumn fx:id="clName" prefWidth="272.0" text="Nama" />
+                        <TableColumn fx:id="clPlatNomor" prefWidth="185.0" text="Plat Nomor" />
+                        <TableColumn fx:id="clPemilik" prefWidth="330.0" text="Pemilik" />
                     </columns>
                   </TableView>
                </children>

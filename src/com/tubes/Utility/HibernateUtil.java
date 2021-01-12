@@ -16,6 +16,7 @@ public class HibernateUtil {
 
     }
 
+
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
@@ -30,4 +31,5 @@ public class HibernateUtil {
             throw new ExceptionInInitializerError(ex);
         }
     }
+
 }

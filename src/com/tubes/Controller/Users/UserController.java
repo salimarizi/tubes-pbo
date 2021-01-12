@@ -3,6 +3,7 @@ package com.tubes.Controller.Users;
 import com.jfoenix.controls.JFXButton;
 import com.tubes.DAO.UsersDAO;
 import com.tubes.Model.UsersEntity;
+import com.tubes.Utility.UserSession;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +35,7 @@ public class UserController {
     public TableColumn<UsersEntity, String> clUsername;
     public TableColumn<UsersEntity, String> clTelepon;
     public TableColumn<UsersEntity, String> clAlamat;
+    UserSession user = UserSession.getInstace();
 
     String modalType;
     public static ObservableList<UsersEntity> users;
@@ -135,6 +137,7 @@ public class UserController {
 
     public void showLogOut(ActionEvent actionEvent) {
         try {
+            user.cleanUserSession();
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("../../View/LoginLayout.fxml"));
             stage.setTitle("Login Tubes");

@@ -2,6 +2,7 @@ package com.tubes.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.tubes.Model.UsersEntity;
+import com.tubes.Utility.HibernateUtil;
 import com.tubes.Utility.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +11,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.internal.SessionImpl;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.JDBCType;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.tubes.Utility.HibernateUtil.getSession;
 
 public class DashboardController {
     public JFXButton btnService;
@@ -126,6 +141,19 @@ public class DashboardController {
             ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
         }
         catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showReports(ActionEvent actionEvent) {
+        JasperPrint jp;
+        Map param = new HashMap();
+        try {
+            jp = JasperFillManager.fillReport("report/ReportBengkel.jasper", param, ((SessionImpl)getSession()).connection());
+            JasperViewer viewer = new JasperViewer(jp, false);
+            viewer.setTitle("Laporan Marnat Bengkel");
+            viewer.setVisible(true);
+        } catch (JRException e) {
             e.printStackTrace();
         }
     }

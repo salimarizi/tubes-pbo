@@ -7,6 +7,7 @@ import com.tubes.Controller.Spareparts.SparepartController;
 import com.tubes.DAO.ServicesDAO;
 import com.tubes.Model.ServicesEntity;
 import com.tubes.Model.VehiclesEntity;
+import com.tubes.Utility.UserSession;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,6 +44,7 @@ public class ServiceController {
     public String modalType;
     public static ObservableList<ServicesEntity> services;
     public static ServicesDAO servicesDAO = new ServicesDAO();
+    UserSession user = UserSession.getInstace();
 
     public void initialize(){ this.refreshData();}
 
@@ -155,6 +157,7 @@ public class ServiceController {
 
     public void showLogOut(ActionEvent actionEvent) {
         try {
+            user.cleanUserSession();
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("../../View/LoginLayout.fxml"));
             stage.setTitle("Login Tubes");

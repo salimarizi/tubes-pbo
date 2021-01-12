@@ -7,6 +7,7 @@ import com.tubes.DAO.SparepartsDAO;
 import com.tubes.DAO.UsersDAO;
 import com.tubes.Model.SparepartsEntity;
 import com.tubes.Model.UsersEntity;
+import com.tubes.Utility.UserSession;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,6 +41,7 @@ public class SparepartController {
     public String modalType;
     public static ObservableList<SparepartsEntity> spareparts;
     public static SparepartsDAO sparepartsDAO = new SparepartsDAO();
+    UserSession user = UserSession.getInstace();
 
     public void initialize(){
         this.refreshData();
@@ -136,6 +138,7 @@ public class SparepartController {
 
     public void showLogOut(ActionEvent actionEvent) {
         try {
+            user.cleanUserSession();
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("../../View/LoginLayout.fxml"));
             stage.setTitle("Login Tubes");
