@@ -30,7 +30,7 @@ public class FormVehicleController {
 
         jenis.clear();
         jenis.add("Car");
-        jenis.add("Motorcycle");
+        jenis.add("Motocycle");
         cbJenisKendaraan.setItems(jenis);
 
         pemilik.clear();

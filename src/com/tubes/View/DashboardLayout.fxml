@@ -21,7 +21,7 @@
                         <Font name="Segoe UI Black" size="14.0" />
                      </font>
                   </JFXButton>
-                  <ImageView fitHeight="148.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageView" fitHeight="148.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../assets/Avatar.jpg" />
                      </image>

@@ -19,6 +19,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -56,10 +58,14 @@ public class DashboardController {
     public static ServicesDAO servicesDAO = new ServicesDAO();
     public static VehiclesDAO vehiclesDAO = new VehiclesDAO();
     public static UsersDAO usersDAO = new UsersDAO();
+    public ImageView imageView;
 
     UserSession user = UserSession.getInstace();
 
     public void initialize(){
+        Image image = new Image("file:/../assets/Avatar.jpg");
+        imageView.setImage(image);
+        
         username.setText(user.getName());
         if (user.getRole().equals("member")){
             btnService.setManaged(false);
@@ -88,7 +94,6 @@ public class DashboardController {
         bxJumlahService.setText("Jumlah Service \n " + servicesDAO.fetchAll().size());
         bxJumlahKendaraan.setText("Jumlah Kendaraan \n " + vehiclesDAO.fetchAll().size());
         bxJumlahPelanggan.setText("Jumlah User \n " + usersDAO.fetchAll().size());
-
 
 
         if (user.getRole().equals("member")){

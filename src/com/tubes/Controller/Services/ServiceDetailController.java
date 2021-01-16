@@ -15,6 +15,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
@@ -45,6 +47,7 @@ public class ServiceDetailController {
     public JFXButton btnUser;
     public JFXButton btnReports;
     public Label username;
+    public ImageView imageView;
     UserSession user = UserSession.getInstace();
 
     ServiceController main;
@@ -62,6 +65,9 @@ public class ServiceDetailController {
     }
     
     public void setController(ServiceController main) {
+        Image image = new Image("file:/../assets/Avatar.jpg");
+        imageView.setImage(image);
+
         this.main = main;
         selectedService = main.getSelectedService();
 

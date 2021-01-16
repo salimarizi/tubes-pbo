@@ -13,6 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
@@ -44,6 +46,7 @@ public class UserController {
     public Label username;
     public JFXButton btnVehicle;
     public JFXButton btnReports;
+    public ImageView imageView;
     UserSession user = UserSession.getInstace();
 
     String modalType;
@@ -51,6 +54,9 @@ public class UserController {
     public static UsersDAO usersDAO = new UsersDAO();
 
     public void initialize(){
+        Image image = new Image("file:/../assets/Avatar.jpg");
+        imageView.setImage(image);
+
         username.setText(user.getName());
         if (user.getRole().equals("member")){
             btnService.setManaged(false);
